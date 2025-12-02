@@ -1,63 +1,653 @@
+
+:root {
+    --primary-color: #FF5722; 
+    --secondary-color: #FFA726; 
+    --text-color: #333;
+    --bg-light: #f7f7f7;
+    --bg-white: #ffffff;
+}
+
+.hero-title {font-size: 180%;}
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-header {
-    background-color: #ffa048;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-}
-
-header h1 {
-    margin: 0;
-}
-
-section {
-    padding: 20px;
-}
-
-h2 {
-    color: #333;
-    text-align: center;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+header {
+    background-color: var(--bg-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
+
+.navbar {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
 }
 
-.brand-list {
-    width: 45%;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
-    padding: 15px;
+.logo-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
 }
 
-.brand-list h3 {
-    color: #ffb662;
+.navbar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
 }
 
-ul {
-    list-style-type: none;
-    padding-left: 0;
+.navbar nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s;
 }
 
-ul li {
-    margin: 8px 0;
+.navbar nav ul li a:hover, .navbar nav ul li a.active-link {
+    color: var(--primary-color);
 }
 
-footer {
-    background-color: #333;
+
+.hero-section {
+    position: relative;
+    background-color: var(--secondary-color);
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 60px 20px 150px; /* Padding dưới lớn để chứa sóng và ảnh */
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+/* LỚP 1: ẢNH GÀ (Nằm giữa nền cam và sóng trắng) */
+.hero-image-overlay {
+    position: absolute;
+    bottom: 24%; /* Chỉnh thụt xuống để trông tự nhiên */
+    left: 41%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 550px;
+    z-index: 5; /* Thấp hơn sóng và chữ */
+}
+
+.main-chicken-img {
+    opacity: 0.47;
+    width: 150%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); /* Tạo bóng cho ảnh gà đẹp hơn */
+}
+
+/* LỚP 2: SÓNG TRẮNG (Che chân ảnh gà) */
+.hero-bg-shapes {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 10; /* Cao hơn ảnh gà (5) */
+}
+
+.wave {
+    width: 100%;
+    height: 120px;
+    background-color: var(--bg-light);
+    border-radius: 100% 100% 0 0 / 100% 100% 0 0; /* Tạo hình cong vòm */
+    transform: scaleX(1.5); /* Kéo dãn chiều ngang */
+}
+
+/* LỚP 3: NỘI DUNG CHỮ (Nổi trên cùng) */
+.hero-content {
+    position: relative;
+    z-index: 20; /* Cao nhất */
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-title {
+    font-size: 3.5em;
+    font-weight: 900;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* NÚT BẤM (BUTTONS) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:active {
+    transform: scale(0.95); /* Hiệu ứng nhấn xuống */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #d84315;
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.4);
+}
+
+.btn-cta {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1.2em;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cta:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
+}
+.btn-cta:active {
+    transform: scale(0.95);
+}
+
+/* --- 4. BRAND LIST (DANH SÁCH THƯƠNG HIỆU) --- */
+.section-title {
+    text-align: center;
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.country-group {
+    background-color: var(--bg-white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.country-group h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-top: 0;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
     margin-top: 20px;
+}
+
+/* CARD VÀ HOVER EFFECT */
+.brand-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Để định vị lớp phủ */
+    overflow: hidden; /* Để lớp phủ bo tròn theo card */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.brand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Lớp phủ chi tiết khi Hover */
+.brand-card::after {
+    content: attr(data-detail);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 87, 34, 0.95); /* Màu cam che phủ */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.brand-card:hover::after {
+    opacity: 1;
+}
+
+.brand-logo {
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.brand-card h4 {
+    margin: 10px 0 5px;
+    color: var(--primary-color);
+}
+
+.brand-card.korean-brand {
+    border-left: 5px solid #2196F3;
+    background-color: #E3F2FD;
+}
+
+/* --- 5. VIDEO SECTION --- */
+.video-section {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Tỷ lệ 16:9 */
+    height: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- 6. FORM ĐĂNG KÝ & LIÊN HỆ --- */
+.full-width-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.promo-box h3 {
+    font-size: 2em;
+    margin: 0 0 10px;
+}
+
+.subscription-form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.subscription-form input {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    width: 300px;
+    font-size: 1rem;
+}
+
+.subscription-form button {
+    background-color: #333;
+    color: white;
+    border-radius: 30px;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contact-comment-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.btn-full-width {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* --- 7. FOOTER --- */
+/* --- FOOTER ĐÃ ĐIỀU CHỈNH --- */
+footer {
+    background-color: #333; /* Nền tối */
+    color: #fff; /* Chữ trắng */
+    padding: 30px 0;
+    margin-top: 50px;
+    font-size: 0.95em;
+    border-top: 5px solid var(--primary-color); /* Viền cam trên cùng tạo điểm nhấn */
+}
+
+/* Container dùng Flexbox để chia 2 bên */
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Đẩy 2 phần ra 2 đầu */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 20px;
+}
+
+/* Phần bản quyền bên trái */
+.footer-left p {
+    margin: 0;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+.footer-left strong {
+    color: var(--secondary-color); /* Màu vàng cam cho tên thương hiệu */
+}
+
+/* Phần liên hệ (Class .So) bên phải */
+.So {
+    text-align: right; /* Canh lề phải cho đẹp */
+}
+
+.So p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Icon và chữ canh phải */
+    gap: 8px;
+}
+
+/* Định dạng link email và sđt */
+.So a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+.So a:hover {
+    color: var(--primary-color); /* Hover chuyển màu cam */
+    text-decoration: underline;
+}
+
+.So .icon {
+    font-size: 1.1em;
+}
+
+/* --- RESPONSIVE CHO FOOTER --- */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column; /* Xếp chồng lên nhau */
+        text-align: center;
+    }
+
+    .So {
+        text-align: center; /* Canh giữa trên mobile */
+    }
+    
+    .So p {
+        justify-content: center; 
+    }
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .hero-title {
+        font-size: 2.5em;
+    }
+    .subscription-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .subscription-form input {
+        width: 100%;
+    }
+    .hero-image-overlay {
+        max-width: 80%;
+    }
+}
+footer {text-align: left;}
+
+.about-us-section {
+    padding: 80px 0;
+    background-color: #fff; 
+}
+
+.about-wrapper {
+    display: flex;
+    align-items: center; 
+    gap: 50px; 
+    justify-content: space-between;
+}
+
+.about-content {
+    flex: 1; 
+}
+
+.sub-title {
+    color: var(--primary-color);
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.about-content h2 {
+    font-size: 2.5em;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.about-content p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.about-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.about-features li {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #444;
+}
+
+.about-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.stat-box strong {
+    display: block;
+    font-size: 2em;
+    color: var(--primary-color);
+    font-weight: 900;
+}
+
+.stat-box span {
+    font-size: 0.9em;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.about-image {
+    flex: 1;
+    position: relative; 
+}
+
+.about-image .img-fluid {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 20px 20px 0px var(--secondary-color); /* Hiệu ứng bóng cứng màu cam */
+    transition: transform 0.3s;
+}
+
+.about-image:hover .img-fluid {
+    transform: translate(-5px, -5px);
+}
+
+.img-badge {
+    position: absolute;
+    bottom: 30px;
+    left: -20px;
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    font-weight: bold;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+@media (max-width: 900px) {
+    .about-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image {
+        margin-top: 30px;
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .about-image .img-fluid {
+        box-shadow: 10px 10px 0px var(--secondary-color);
+    }
+
+    .about-stats {
+        justify-content: center;
+    }
+    
+    .about-features {
+        text-align: left;
+        display: inline-block;
+    }
+    
+    .img-badge {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -15px;
+        width: max-content;
+    }
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; 
+        z-index: 101; 
+    }
+
+    .navbar nav ul {
+        position: fixed; 
+        top: 0;
+        right: -100%; 
+        width: 70%; 
+        height: 100vh; 
+        background-color: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s ease; 
+        z-index: 100;
+        padding: 0;
+        margin: 0;
+    }
+
+    
+    .navbar nav ul.active {
+        right: 0; 
+    }
+
+    .navbar nav ul li {
+        margin: 20px 0;
+    }
+
+    .navbar nav ul li a {
+        font-size: 1.2em; /* Chữ to hơn cho dễ bấm */
+    }
 }
